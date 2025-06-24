@@ -1,0 +1,11 @@
+“I found Python 3.12 on the system, but be careful if you change it later.”
+
+You can safely ignore this or suppress it by explicitly defining the Python interpreter in your inventory 
+
+yaml
+Copy
+Edit
+web01:
+  ansible_host: 172.31.28.206
+  ansible_user: ubuntu
+  ansible_python_interpreter: /usr/bin/python3
