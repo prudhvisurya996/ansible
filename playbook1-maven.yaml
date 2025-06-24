@@ -11,3 +11,6 @@
       apt:
         name: maven
         state: present
+
+
+ansible-playbook -i inventory.yaml install_maven.yml
