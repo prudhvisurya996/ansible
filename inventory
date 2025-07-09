@@ -84,6 +84,40 @@ all:
        slave04:
        slave05:
 ubuntu@ip-172-31-31-2
+---------------------------------------------------------------
+
+all:
+  vars:
+    ansible_ssh_private_key_file: clientkey.pem
+    ansible_python_interpreter: /usr/bin/python3
+
+  hosts:
+    slave01:
+      ansible_host: 172.31.16.216
+    slave02:
+      ansible_host: 172.31.17.213
+    slave03:
+      ansible_host: 172.31.30.188
+    slave04:
+      ansible_host: 172.31.20.163
+    slave05:
+      ansible_host: 172.31.18.56
+
+  children:
+    ubuntuservers:
+      vars:
+        ansible_user: ubuntu
+      hosts:
+        slave01:
+        slave02:
+
+    alservers:
+      vars:
+        ansible_user: ec2-user
+      hosts:
+        slave03:
+        slave04:
+        slave05:
 
 
 
