@@ -46,5 +46,45 @@ all:
           ansible_ssh_private_key_file: /home/ubuntu/task-1/ansible_key.pem
 
 
+all:
+  hosts:
+    slave01:
+      ansible_host: 172.31.16.216 
+      ansible_user: ubuntu
+      ansible_ssh_private_key_file: clientkey.pem
+      ansible_python_interpreter: /usr/bin/python3
+    slave02:
+      ansible_host: 172.31.17.213
+      ansible_user: ubuntu
+      ansible_ssh_private_key_file: clientkey.pem
+      ansible_python_interpreter: /usr/bin/python3
+    slave03:
+      ansible_host: 172.31.30.188 
+      ansible_user: ec2-user
+      ansible_ssh_private_key_file: clientkey.pem
+      ansible_python_interpreter: /usr/bin/python3
+    slave04:
+      ansible_host: 172.31.20.163
+      ansible_user: ec2-user
+      ansible_ssh_private_key_file: clientkey.pem
+      ansible_python_interpreter: /usr/bin/python3
+    slave05:
+      ansible_host: 172.31.18.56
+      ansible_user: ec2-user
+      ansible_ssh_private_key_file: clientkey.pem
+      ansible_python_interpreter: /usr/bin/python3
+  children:
+    ubuntuservers:
+      hosts:
+       slave01:
+       slave02:
+    alservers:
+      hosts:
+       slave03:
+       slave04:
+       slave05:
+ubuntu@ip-172-31-31-2
+
+
 
 ansible all -i inventory.yaml -m ping
