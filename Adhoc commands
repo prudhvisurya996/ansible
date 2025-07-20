@@ -1,0 +1,70 @@
+   1  clear
+    2  sudo -i
+    3  clear
+    4  mkdir task-1
+    5  cd task-1/
+    6  vi inventory
+    7  vi ans.pem
+    8  chmod 400 ans.pem 
+    9  clear
+   10  ls
+   11  ansible -i inventory  -m ping all
+   12  cat inventory 
+   13  ansible all -i inventory -m ping
+   14  ansible slave01 -i inventory -m ping
+   15  clear
+   16  ansible slave01 -i inventory -m ping
+   17  ansible all -i inventory -m ping
+   18  clear
+   19  cat inventory 
+   20  cd /usr/bin/ansible
+   21  sudo -i
+   22  clear
+   23  ansible all -i inventory -m ansible.builtin.reboot -b
+   24  ls
+   25  ansible slave01 -i inventory -m ansible.builtin.reboot -b
+   26  clear
+   27  cd 
+   28  mkdir task-2 
+   29  cd task-2
+   30  touch file1
+   31  ls
+   32  pwd
+   33  ansible slave01 -i inventory -m ansible.builtin.copy -a "src=/home/ubuntu/task-2/file1 dest=/tmp" -b 
+   34  ls
+   35  cd
+   36  cd task-1
+   37  ls
+   38  cd
+   39  clear
+   40  tree
+   41  sudo apt install tree -y
+   42  clea
+   43  clear
+   44  tree
+   45  cp -r task-1/* task-2
+   46  tree
+   47  clear
+   48  cd task-2
+   49  ansible slave01 -i inventory -m ansible.builtin.copy -a "src=/home/ubuntu/task-2/file1 dest=/tmp" -b 
+   50  ls
+   51  touch file2
+   52  ansible slave02 -i inventory -m ansible.builtin.copy -a "src=/home/ubuntu/task-2/file2 dest=/tmp" -b
+   53  touch myfile
+   54  ansible all -i inventory -m ansible.builtin.copy -a "src=/home/ubuntu/task-2/myfile dest=/tmp" -b
+   55  ansible slave01  -m ansible.builtin.file -a "dest=/tmp/file1 mode=400" -b  -i inventory
+   56  ansible all -m ansible.builtin.file -a "dest=/tmp/myfile mode=600 owner=ubuntu group=ubuntu" -b -i inventory 
+   57  ansible all -i inventory -m ansible.builtin.apt -a "name=maven state=present" -b become
+   58  ansible all -i inventory -m ansible.builtin.apt -a "name=openjdk-17-jdk state=present" -b
+   59  clear
+   60  ansible all -m ansible.builtin.user -a "name=surya password=surya123" -i inventory  -b
+   61  ansible all -m ansible.builtin.user -a "name=surya state=absent" -i inventory  -b
+   62  ansible all -m ansible.builtin.user -a "name=surya password=surya123" -i inventory  -b
+   63  ansible all -m ansible.builtin.group -a "name=mygroup" -i inventory -b
+   64  ansible all -m ansible.builtin.group -a "name=mygroup state=absent" -i inventory -b
+   65  whoami
+   66  ansible all -m ansible.builtin.apt -a "name=nginx state=present" -i inventory -b
+   67  ansible all -m ansible.builtin.service -a "name=nginx state=stopped" -i inventory -b
+   68  ansible all -m ansible.builtin.service -a "name=nginx state=restarted" -i inventory -b
+   69  ansible all -m ansible.builtin.service -a "name=nginx state=restarted" -i inventory -b -C
+   70  ansible all -m ansible.builtin.service -a "name=nginx state=stopped" -i inventory -b -C
